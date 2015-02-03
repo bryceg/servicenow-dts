@@ -1,5 +1,6 @@
 ﻿declare var gs: sn.Server.GlideSystemStatic;
 declare var GlideRecord: sn.Server.IGlideRecord;
+declare var GlideRecordSecure: sn.Server.IGlideRecord;
 declare var GlideAggregate: sn.Server.IGlideAggregate;
 declare var GlideElement: sn.Server.IGlideElement;
 declare var GlideDateTime: sn.Server.IGlideDateTime;
@@ -254,6 +255,7 @@ declare module sn {
             deleteRecord(): boolean;
         }
 
+        //http://wiki.servicenow.com/index.php?title=GlideAggregate
         export interface IGlideAggregate {
             new (tableName: string): IGlideAggregate;
             addEncodedQuery(query: string): void;
@@ -271,6 +273,7 @@ declare module sn {
             setGroup(b: boolean): void;
         }
 
+        //http://wiki.servicenow.com/index.php?title=GlideElement
         export interface IGlideElement {
             canCreate(): boolean;
             canRead(): boolean;
