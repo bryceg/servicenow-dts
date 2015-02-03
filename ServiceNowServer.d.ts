@@ -1,9 +1,18 @@
 ﻿declare var gs: sn.Server.GlideSystemStatic;
 declare var GlideRecord: sn.Server.IGlideRecord;
+declare var GlideAggregate: sn.Server.IGlideAggregate;
+declare var GlideElement: sn.Server.IGlideElement;
 declare var GlideDateTime: sn.Server.IGlideDateTime;
 declare var GlideTime: sn.Server.IGlideTime;
 declare var GlideDuration: sn.Server.IGlideDuration;
-
+declare var GlideHTTPRequest: sn.Server.IGlideHTTPRequest;
+declare var JSONParser: sn.Server.IJSONParser;
+declare var JSUtil: sn.Server.IJSUtil;
+declare var JSValidator: sn.Server.IJSValidator;
+declare var TableUtils: sn.Server.ITableUtils;
+declare var ArrayUtil: sn.Server.IArrayUtil;
+declare var CIUtils: sn.Server.ICIUtils;
+declare var GSLog: sn.Server.IGSLog;
 
 declare module sn {
     export interface IArrayList {
@@ -31,9 +40,9 @@ declare module sn {
             getStyle(table: string, field: string, value: string): string;
             getXMLText(xml: string, xpath: string): string;
             getXMLNodeList(xml: string): any;
-            log(message: string, source: string): void;
-            logError(message: string, source: string): void;
-            logWarning(message: string, source: string): void;
+            log(message: string, source?: string): void;
+            logError(message: string, source?: string): void;
+            logWarning(message: string, source?: string): void;
             nil(object: any): boolean;
             print(message: string): void;
             tableExists(table: string): boolean;
@@ -245,6 +254,67 @@ declare module sn {
             deleteRecord(): boolean;
         }
 
+        export interface IGlideAggregate {
+            new (tableName: string): IGlideAggregate;
+            addEncodedQuery(query: string): void;
+            addHaving(name: string, operator: string, value: string): void;
+            addAggregate(agg: string, name: string): void;
+            addTrend(fieldName: string, timeInterval: string): void;
+            getAggregate(agg: string, name: string): string;
+            getQuery(): string;
+            getTotal(agg: string, name: string): number;
+            getValue(name: string): string;
+            groupBy(name: string): void;
+            orderBy(name: string): void;
+            orderByAggregate(name: string): void;
+            query(): void;
+            setGroup(b: boolean): void;
+        }
+
+        export interface IGlideElement {
+            canCreate(): boolean;
+            canRead(): boolean;
+            canWrite(): boolean;
+            changes(): boolean;
+            changesFrom(value: Object): boolean;
+            changesTo(value: Object): boolean;
+            debug(value: Object): void;
+            getAttribute(value: string): string;
+            getBaseTableName(): string;
+            getBooleanAttribute(name: string): boolean;
+            getChoices(name: string): Array<any>;
+            getDebugCount(): number;
+            getDependentTable(): string;
+            getDisplayValue(maxCharacters: number, nullSub: string): string;
+            getED(): any;
+            getElementValue(name: string): any;
+            getEscapedValue(): string;
+            getFieldStyle(): any;
+            getGlideObject(): any;
+            getGlideRecord(): IGlideRecord;
+            getHTMLValue(maxChars: number): any;
+            getHTMLValueExt(maxCharacters: number, nullSub: string): string;
+            getJournalEntry(value: number): string;
+            getLabel(): string;
+            getName(): string;
+            getRefRecord(): IGlideRecord;
+            getStyle(): any;
+            getTableName(): string;
+            getTextAreaDisplayValue(): string;
+            getXHTMLValue(): string;
+            getXMLValue(): string;
+            hasAttribute(name: string): boolean;
+            hasRightsTo(name: string): boolean;
+            hasValue(): boolean;
+            nil(): boolean;
+            setDisplayValue(value: Object): void;
+            setError(value: string): void;
+            setInitialValue(value: string): void;
+            setJournalEntry(value: Object, userName: string): void;
+            setValue(value: Object): void;
+            toString(): string;
+        }
+
         export interface IQueryCondition {
             addOrCondition(encodedQuery: string): IQueryCondition;
             addOrCondition(fieldName: string, value: string): IQueryCondition;
@@ -329,11 +399,111 @@ declare module sn {
 
         export interface IGlideTime {
         }
+
         export interface IGlideDuration {
         }
+
         export interface IElementDescriptor {
         }
+
         export interface IGlideElement {
+        }
+
+        export interface IGlideHTTPRequest {
+            new(uri: string) : IGlideHTTPRequest;
+            setBasicAuth(user: string, password: string) : void;
+            addHeader(name: string, value: string): void;
+            get(): IGlideHTTPResponse;
+            post(data: string): IGlideHTTPResponse;
+            put(data: string): IGlideHTTPResponse;
+            del(): IGlideHTTPResponse;
+        }
+
+        export interface IGlideHTTPResponse {
+            getStatusCode(): number;
+            getBody(): string;
+        }
+
+        export interface IJSONParser {
+            new(): IJSONParser;
+            initialize(): void;
+            parse<T>(source: string, reviver?: (key: string, value: Object) => Object): T;
+            jsonParse<T>(json: string, opt_reviver?: (key: string, value: Object) => Object): T;
+        }
+
+        export interface IJSUtil {
+            has(item: Object): boolean;
+            doesNotHave(item: Object): boolean;
+            nil(item: Object): boolean;
+            notNil(item: Object): boolean;
+            instance_of(item: Object, klass: string): boolean;
+            type_of(value: Object): string;
+            isJavaObject(value: any): boolean;
+            toBoolean(value: any): boolean;
+            getBooleanValue(gr: IGlideRecord, field: string): boolean;
+            logObject(obj: Object, name?: string): void;
+            escapeText(text: string): string;
+            unescapeText(text: string): string;
+            escapeAttr(text: string): string;
+            unescapeAttr(text: string): string;
+        }
+
+        export interface ITableUtils {
+            new(tableName: string): ITableUtils;
+            initialize(tableName: string): void;
+            tableExists(): boolean;
+            drop(tableName: string): void;
+            dropAndClean(tableName: string): void;
+            dropTableAndExtensions(tableName: string): void;
+            getTables(): Array<any>;
+            getTableExtensions(): Array<any>;
+            getAllExtensions(): Array<any>;
+            getAbsoluteBase(): string;
+            getHierarchy(): Array<any>;
+            hasExtensions(): boolean;
+            isBaseClass(): boolean;
+            isSoloClass(): boolean;
+        }
+
+        export interface IArrayUtil {
+            new (): IArrayUtil;
+            contains<T>(array: Array<T>, element: T): number;
+            indexOf<T>(array: Array<T>, element: T, startIndex?: number): number;
+            ensureArray(obj: Object): Array<Object>;
+            concat(parent: Array<Object>, child: Array<Object>): Array<Object>;
+            convertArray(a: Object): Array<Object>;
+            diff(a: Array<Object>, b: Array<Object>, c?: Array<Object>, d?: Array<Object>): Array<Object>;
+            intersect(a: Array<Object>, b: Array<Object>, c?: Array<Object>, d?: Array<Object>): Array<Object>;
+            union(a: Array<Object>, b: Array<Object>, c?: Array<Object>, d?: Array<Object>): Array<Object>;
+            unique(a1: Array<Object>): Array<Object>;
+        }
+
+        export interface ICIUtils {
+            new (): ICIUtils;
+            servicesAffectedByCI(id: string): Array<string>;
+            servicesAffectedByTask(record: IGlideRecord): Array<string>;
+        }
+
+        export interface IGSLog {
+            new (traceProperty: string, caller: string): IGSLog;
+            initialize(traceProperty: string, caller: string): void;
+            logDebug(msg: string);
+            logInfo(msg: string);
+            logNotice(msg: string);
+            logWarning(msg: string);
+            logErr(msg: string);
+            logCrit(msg: string);
+            logAlert(msg: string);
+            logEmerg(msg: string);
+            log(level: string, msg: string);
+            setLevel(level: string);
+            getLevel(level: string);
+            debugOn(): boolean;
+        }
+
+        export interface IJSValidator {
+            new (): IJSValidator;
+            validate(): string;
         }
     }
 } 
