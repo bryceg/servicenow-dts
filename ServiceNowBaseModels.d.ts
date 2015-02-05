@@ -112,8 +112,8 @@ declare module sn {
 
         export interface IUser_GR extends IUserBase, Server.IGlideRecord { }
         export interface IUser_GE extends IUserBase, Server.IGlideElement { }
-        export interface IIncident_GR extends IUserBase, Server.IGlideRecord { }
-        export interface IIncident_GE extends IUserBase, Server.IGlideElement { }
+        export interface IIncident_GR extends IIncidentBase, Server.IGlideRecord { }
+        export interface IIncident_GE extends IIncidentBase, Server.IGlideElement { }
     }
 
     // http://wiki.servicenow.com/index.php?title=Introduction_to_Managing_Data
