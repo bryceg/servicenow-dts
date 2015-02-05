@@ -1,7 +1,7 @@
-﻿declare var g_form: sn.Client.GlideFormStatic;
-declare var g_list: sn.Client.GlideListStatic;
-declare var g_user: sn.Client.GlideUserStatic;
-declare var g_scratchpad: sn.Client.GlideScratchPadStatic;
+﻿declare var g_form: sn.Client.IGlideForm;
+declare var g_list: sn.Client.IGlideList;
+declare var g_user: sn.Client.IGlideUser;
+declare var g_scratchpad: sn.Client.IGlideScratchPad;
 
 declare var GlideRecord: sn.Client.IGlideRecord;
 declare var GlideDialogWindow: sn.Client.IGlideDialogWindow;
@@ -14,7 +14,7 @@ declare module sn {
 
     export module Client {
         // http://wiki.servicenow.com/index.php?title=GlideForm_(g_form)
-        export interface GlideFormStatic {
+        export interface IGlideForm {
             ///////////////////////////////////////
             // DISPLAY SETTINGS
             ///////////////////////////////////////
@@ -148,7 +148,7 @@ declare module sn {
              *  For example, before performing setValue(fieldName, newValue.toUpperCase());, validate that the short description is not already uppercase.
              *  This will prevent the Client Script from applying the toUpperCase() more than once.  
              */
-            setValue(fieldName: string, value: string, displayValue: string): void;
+            setValue(fieldName: string, value: string, displayValue?: string): void;
 
             ///////////////////////////////////////
             // Change Choice List
@@ -247,7 +247,7 @@ declare module sn {
         }
 
         // http://wiki.servicenow.com/index.php?title=GlideList2_(g_list)
-        export interface GlideListStatic {
+        export interface IGlideList {
             ///////////////////////////////////////
             // FILTER METHODS
             ///////////////////////////////////////
@@ -316,7 +316,7 @@ declare module sn {
         }
 
         // http://wiki.servicenow.com/index.php?title=GlideUser_(g_user)
-        export interface GlideUserStatic {
+        export interface IGlideUser {
             userName: string; // User name of the current user.
             userID: string; // Sys_id of the current user.
             firstName: string; // First name of the current user.
@@ -333,7 +333,7 @@ declare module sn {
             hasRoles(): boolean;
         }
 
-        export interface GlideScratchPadStatic {
+        export interface IGlideScratchPad {
             [key: string]: any;
         }
 
