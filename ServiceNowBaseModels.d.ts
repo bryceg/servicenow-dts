@@ -33,9 +33,87 @@ declare module sn {
             action_delete: boolean;
         }
 
-        export interface IIncident extends Server.IGlideRecord {
-
+        export interface ITaskBase {
+            active: boolean;
+            activity_due: Date;
+            approval: string;
+            approval_set: Date;
+            assigned_to: IUser_GE;
+            caller_id: IUser_GE;
+            child_incidents: number;
+            closed_at: Date;
+            closed_by: IUser_GE;
+            close_notes: string;
+            //cmdb_ci: IConfigurationItem_GE
+            contact_type: string;
+            correlation_display: string;
+            correlation_id: string;
+            description: string;
+            due_date: Date;
+            escalation: number;
+            expected_start: Date;
+            follow_up: Date;
+            impact: number;
+            knowledge: boolean;
+            made_sla: boolean;
+            notify: number;
+            number: string;
+            opened_at: Date;
+            opened_by: IUser_GE;
+            order: number;
+            priority: number;
+            reassignment_count: number;
+            short_description: string;
+            sla_due: number;
+            state: number;
+            sys_created_by: string;
+            sys_created_on: Date;
+            sys_id: string;
+            sys_updated_by: string;
+            sys_updated_on: Date;
+            upon_approval: string;
+            upon_reject: string;
+            urgency: number;
+            watch_list: IUser_GE;
+            work_end: Date;
         }
+
+        export interface IIncidentBase extends ITaskBase {
+            business_stc: number;
+            calendar_stc: number;
+            caller_id: IUser_GE;
+            category: string;
+            child_incidents: number;
+            close_code: string;
+            incident_state: number;
+            notify: number;
+            reopen_count: number;
+            resolved_at: Date;
+            resolved_by: IUser_GE;
+            severity: number;
+            subcategory: string;
+        }
+
+        export interface IUserBase {
+            first_name: string;
+            failed_attempts: number;
+            country: string;
+            city: string;
+            active: boolean;
+            accumulated_roles: string;
+            email: string;
+            employee_number: string;
+            gender: string;
+            last_login: Date;
+            last_name: string;
+            middle_name: string;
+            name: string;
+        }
+
+        export interface IUser_GR extends IUserBase, Server.IGlideRecord { }
+        export interface IUser_GE extends IUserBase, Server.IGlideElement { }
+        export interface IIncident_GR extends IUserBase, Server.IGlideRecord { }
+        export interface IIncident_GE extends IUserBase, Server.IGlideElement { }
     }
 
     // http://wiki.servicenow.com/index.php?title=Introduction_to_Managing_Data
