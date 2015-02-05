@@ -1,4 +1,6 @@
 ﻿declare var gs: sn.Server.GlideSystemStatic;
+declare var current: sn.Server.IGlideRecord;
+declare var previous: sn.Server.IGlideRecord;
 declare var GlideRecord: sn.Server.IGlideRecord;
 declare var GlideRecordSecure: sn.Server.IGlideRecord;
 declare var GlideAggregate: sn.Server.IGlideAggregate;
@@ -407,9 +409,6 @@ declare module sn {
         }
 
         export interface IElementDescriptor {
-        }
-
-        export interface IGlideElement {
         }
 
         export interface IGlideHTTPRequest {
