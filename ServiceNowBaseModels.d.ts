@@ -1,7 +1,7 @@
 ﻿
 declare module sn {
     export module Model {
-        export interface IBusinessRule extends Server.IGlideRecord {
+        export interface IBusinessRule {
             filter_condition: String;
             abort_action: boolean;
             sys_created_on: string;

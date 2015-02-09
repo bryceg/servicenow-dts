@@ -274,7 +274,7 @@ declare module sn {
             query(): void;
             setGroup(b: boolean): void;
         }
-
+        
         //http://wiki.servicenow.com/index.php?title=GlideElement
         export interface IGlideElement {
             canCreate(): boolean;
@@ -295,7 +295,7 @@ declare module sn {
             getElementValue(name: string): any;
             getEscapedValue(): string;
             getFieldStyle(): any;
-            getGlideObject(): any;
+            getGlideObject<T>(): T;
             getGlideRecord(): IGlideRecord;
             getHTMLValue(maxChars: number): any;
             getHTMLValueExt(maxCharacters: number, nullSub: string): string;
@@ -337,8 +337,10 @@ declare module sn {
             hasDate(): boolean;
             getUserTimeZone(): any; // todo: define TimeZoneObject
             setTZ(tz: any): void; // todo: tz is a TimeZoneObject
-            setValue(dateTime: string): void;
-            setValueUTC(dt: string, format: string): void;
+            setValue(value: string, format?: string): void;
+            setValue(value: IGlideDateTime): void;
+            setValue(value: number): void;
+            setValueUTC(value: string, format: string): void;
             setGlideDateTime(gdt: IGlideDateTime): void;
             isDST(): boolean;
             getDSTOffset(): number;
