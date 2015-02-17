@@ -33,12 +33,12 @@ declare module sn {
             eventQueue(eventName: string, gr: IGlideRecord, optionalParam1: string, optionalParam2: string, eventQueue: string): void;
             getDisplayColumn(table: string): string;
             getDisplayValueFor(table: string, sysid: string, field: string): string;
-            getEscapedProperty(property: string, altObject: any): any; // returns string unless property not found, then returns defaultReturnObject
+            getEscapedProperty(property: string, altObject?: any): any; // returns string unless property not found, then returns defaultReturnObject
             getMessage(id: string, messageFormat?: string): string;
             getMessageS(id: string, messageFormat?: string): string;
             getNodeValue(object: any, index: number): any;
             getNodeName(object: any, index: number): any;
-            getProperty(key: string, altObject: any): any; // returns string unless property not found, then returns defaultReturnObject
+            getProperty(key: string, altObject?: any): any; // returns string unless property not found, then returns defaultReturnObject
             getScriptError(script: string): string;
             getStyle(table: string, field: string, value: string): string;
             getXMLText(xml: string, xpath: string): string;
