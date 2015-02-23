@@ -1,4 +1,4 @@
-﻿declare var gs: sn.Server.GlideSystemStatic;
+﻿declare var gs: sn.Server.GlideSystem;
 declare var current: sn.Server.IGlideRecord;
 declare var previous: sn.Server.IGlideRecord;
 declare var GlideRecord: sn.Server.IGlideRecord;
@@ -16,6 +16,7 @@ declare var TableUtils: sn.Server.ITableUtils;
 declare var ArrayUtil: sn.Server.IArrayUtil;
 declare var CIUtils: sn.Server.ICIUtils;
 declare var GSLog: sn.Server.IGSLog;
+declare var Class: sn.Server.IClass;
 
 declare module sn {
     export interface IArrayList {
@@ -24,8 +25,12 @@ declare module sn {
     }
 
     export module Server {
-        // http://wiki.servicenow.com/index.php?title=GlideSystemStatic
-        export interface GlideSystemStatic {
+        export interface IClass {
+            create(): any;
+        }
+
+        // http://wiki.servicenow.com/index.php?title=GlideSystem
+        export interface GlideSystem {
             ///////////////////////////////////////
             // General
             ///////////////////////////////////////
