@@ -303,7 +303,7 @@ declare module sn {
             /*
              * Returns the GlideListStatic object for the list or for the list that contains the specified item.
              */
-            get(element_or_id: any): GlideListStatic; // element_or_id can be a DOMElement or string ID
+            get(element_or_id: any): IGlideList; // element_or_id can be a DOMElement or string ID
             getChecked(): string; // returns comma separated list
             getListName(): string; // Returns the name of the list, which is usually the table name.
             getParentTable(): string;
