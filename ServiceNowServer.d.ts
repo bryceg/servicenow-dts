@@ -1,8 +1,8 @@
 ﻿declare var gs: sn.Server.GlideSystem;
-declare var current: sn.Server.IGlideRecord;
-declare var previous: sn.Server.IGlideRecord;
-declare var GlideRecord: sn.Server.IGlideRecord;
-declare var GlideRecordSecure: sn.Server.IGlideRecord;
+declare var current: sn.Server.IGlideServerRecord;
+declare var previous: sn.Server.IGlideServerRecord;
+declare var GlideRecord: sn.Server.IGlideServerRecord;
+declare var GlideRecordSecure: sn.Server.IGlideServerRecord;
 declare var GlideAggregate: sn.Server.IGlideAggregate;
 declare var GlideElement: sn.Server.IGlideElement;
 declare var GlideDateTime: sn.Server.IGlideDateTime;
@@ -17,6 +17,8 @@ declare var ArrayUtil: sn.Server.IArrayUtil;
 declare var CIUtils: sn.Server.ICIUtils;
 declare var GSLog: sn.Server.IGSLog;
 declare var Class: sn.Server.IClass;
+declare var AbstractAjaxProcessor: sn.Server.IGlideAjax;
+declare var GlideStringUtil: sn.Server.IGlideStringUtil;
 
 declare module sn {
     export interface IArrayList {
@@ -35,7 +37,7 @@ declare module sn {
             // General
             ///////////////////////////////////////
 
-            eventQueue(eventName: string, gr: IGlideRecord, optionalParam1: string, optionalParam2: string, eventQueue: string): void;
+            eventQueue(eventName: string, gr: IGlideServerRecord, optionalParam1: string, optionalParam2: string, eventQueue: string): void;
             getDisplayColumn(table: string): string;
             getDisplayValueFor(table: string, sysid: string, field: string): string;
             getEscapedProperty(property: string, altObject?: any): any; // returns string unless property not found, then returns defaultReturnObject
@@ -54,7 +56,7 @@ declare module sn {
             nil(object: any): boolean;
             print(message: string): void;
             tableExists(table: string): boolean;
-            workflowFlush(gr: IGlideRecord): void;
+            workflowFlush(gr: IGlideServerRecord): void;
 
             ///////////////////////////////////////
             // Date and Time Functions
@@ -150,15 +152,15 @@ declare module sn {
         }
 
         // http://wiki.servicenow.com/index.php?title=GlideRecord
-        export interface IGlideRecord {
-            new (type: string): IGlideRecord;
+        export interface IGlideServerRecord {
+            new (type: string): IGlideServerRecord;
 
             ///////////////////////////////////////
             // Query Method Summary
             ///////////////////////////////////////
 
             addActiveQuery(): IQueryCondition;
-            addDomainQuery(obj: IGlideRecord): void;
+            addDomainQuery(obj: IGlideServerRecord): void;
             addEncodedQuery(query: string): void;
             addInactiveQuery(): IQueryCondition;
             addJoinQuery(joinTable: string, primaryField?: string, joinTableField?: string): IQueryCondition;
@@ -301,13 +303,13 @@ declare module sn {
             getEscapedValue(): string;
             getFieldStyle(): any;
             getGlideObject<T>(): T;
-            getGlideRecord(): IGlideRecord;
+            getGlideRecord(): IGlideServerRecord;
             getHTMLValue(maxChars: number): any;
             getHTMLValueExt(maxCharacters: number, nullSub: string): string;
             getJournalEntry(value: number): string;
             getLabel(): string;
             getName(): string;
-            getRefRecord(): IGlideRecord;
+            getRefRecord(): IGlideServerRecord;
             getStyle(): any;
             getTableName(): string;
             getTextAreaDisplayValue(): string;
@@ -409,6 +411,15 @@ declare module sn {
             setYearUTC(year: number): void;
         }
 
+        export interface IGlideAjax {
+            getParameter(name: string): string;
+            newItem(name: string): IGlideAjaxXml;
+        }
+
+        export interface IGlideAjaxXml {
+            setAttribute(name: string, value: string): void;
+        }
+
         export interface IGlideTime {
         }
 
@@ -449,7 +460,7 @@ declare module sn {
             type_of(value: Object): string;
             isJavaObject(value: any): boolean;
             toBoolean(value: any): boolean;
-            getBooleanValue(gr: IGlideRecord, field: string): boolean;
+            getBooleanValue(gr: IGlideServerRecord, field: string): boolean;
             logObject(obj: Object, name?: string): void;
             escapeText(text: string): string;
             unescapeText(text: string): string;
@@ -490,7 +501,7 @@ declare module sn {
         export interface ICIUtils {
             new (): ICIUtils;
             servicesAffectedByCI(id: string): Array<string>;
-            servicesAffectedByTask(record: IGlideRecord): Array<string>;
+            servicesAffectedByTask(record: IGlideServerRecord): Array<string>;
         }
 
         export interface IGSLog {
@@ -513,6 +524,12 @@ declare module sn {
         export interface IJSValidator {
             new (): IJSValidator;
             validate(): string;
+        }
+
+        export interface IGlideStringUtil {
+            base64Decode(value: string): string;
+            base64DecodeAsBytes(value: string): any;
+            escapeHTML(value: string): string;
         }
     }
 } 

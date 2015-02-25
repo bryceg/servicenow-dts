@@ -3,8 +3,9 @@ declare var g_list: sn.Client.IGlideList;
 declare var g_user: sn.Client.IGlideUser;
 declare var g_scratchpad: sn.Client.IGlideScratchPad;
 
-declare var GlideRecord: sn.Client.IGlideRecord;
+declare var GlideRecord: sn.Client.IGlideClientRecord;
 declare var GlideDialogWindow: sn.Client.IGlideDialogWindow;
+declare var GlideAjax: sn.Client.IGlideAjaxClient;
 
 declare module sn {
     export interface IArrayList {
@@ -338,7 +339,7 @@ declare module sn {
         }
 
         // http://wiki.servicenow.com/index.php?title=Client_Side_GlideRecord
-        export interface IGlideRecord {
+        export interface IGlideClientRecord {
             /*
              * The actual record can be any table record, which could have any number of properties.
              * For common models we should extend this interface with the actual properties.
@@ -424,6 +425,14 @@ declare module sn {
             setSize(w: number, h: number): void;
             setPreference(name: string, value: string): void;
             render(): void;
+        }
+
+        //http://wiki.servicenow.com/index.php?title=GlideAjax
+        export interface IGlideAjaxClient {
+            addParam(name: string, value: string): void;
+            getXMLWait(): void;
+            getXML(callback: (response: any) => void): void;
+            getAnswer(): any;
         }
     }
 }
