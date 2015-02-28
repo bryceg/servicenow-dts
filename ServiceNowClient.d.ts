@@ -429,6 +429,7 @@ declare module sn {
 
         //http://wiki.servicenow.com/index.php?title=GlideAjax
         export interface IGlideAjaxClient {
+            new (name: string): IGlideAjaxClient;
             addParam(name: string, value: string): void;
             getXMLWait(): void;
             getXML(callback: (response: any) => void): void;
