@@ -19,6 +19,7 @@ declare var GSLog: sn.Server.IGSLog;
 declare var Class: sn.Server.IClass;
 declare var AbstractAjaxProcessor: sn.Server.IGlideAjax;
 declare var GlideStringUtil: sn.Server.IGlideStringUtil;
+declare var GlideEncrypter: sn.Server.IGlideEncrypter;
 
 declare module sn {
     export interface IArrayList {
@@ -530,6 +531,12 @@ declare module sn {
             base64Decode(value: string): string;
             base64DecodeAsBytes(value: string): any;
             escapeHTML(value: string): string;
+        }
+
+        export interface IGlideEncrypter {
+            new (): IGlideEncrypter;
+            decrypt(value: string): string;
+            encrypt(value: string): string;
         }
     }
 } 
