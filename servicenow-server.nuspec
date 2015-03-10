@@ -4,8 +4,8 @@
         <id>servicenow.server.TypeScript</id>
         <version>0.2.5</version>
         <title>servicenow.server.Typescript</title>
-        <authors>Avanade PSG</authors>
-        <owners>Avanade</owners>
+        <authors>PSG</authors>
+        <owners>PSG</owners>
         <licenseUrl>https://github.com/Avanade/servicenow-dts/blob/master/LICENSE</licenseUrl>
         <projectUrl>https://github.com/Avanade/servicenow-dts</projectUrl>
         <requireLicenseAcceptance>false</requireLicenseAcceptance>
