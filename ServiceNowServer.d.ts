@@ -425,6 +425,20 @@ declare module sn {
         }
 
         export interface IGlideDuration {
+            new (): IGlideDuration;
+            new (another: IGlideDuration): IGlideDuration;
+            new (ms: number): IGlideDuration;
+            new (displayValue: string): IGlideDuration;
+            add(value: IGlideDuration): IGlideDuration;
+            getByFormat(format: string): IGlideDuration;
+            getDayPart(): number;
+            getRoundedDayPart(): number;
+            getDisplayValue(): string;
+            getDurationValue(): string;
+            setDisplayValue(asDisplayed: string): void;
+            getValue(): string;
+            setValue(o: any): void; 
+            subtract(value: IGlideDuration): void;
         }
 
         export interface IElementDescriptor {
