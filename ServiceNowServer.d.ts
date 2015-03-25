@@ -20,6 +20,7 @@ declare var Class: sn.Server.IClass;
 declare var AbstractAjaxProcessor: sn.Server.IGlideAjax;
 declare var GlideStringUtil: sn.Server.IGlideStringUtil;
 declare var GlideEncrypter: sn.Server.IGlideEncrypter;
+declare var j2js: (val: Object) => any;
 
 declare module sn {
     export interface IArrayList {
