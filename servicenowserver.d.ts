@@ -21,6 +21,7 @@ declare var AbstractAjaxProcessor: sn.Server.IGlideAjax;
 declare var GlideStringUtil: sn.Server.IGlideStringUtil;
 declare var GlideEncrypter: sn.Server.IGlideEncrypter;
 declare var j2js: (val: Object) => any;
+declare var JSON: sn.Server.IJSON;
 
 declare module sn {
     export interface IArrayList {
@@ -552,6 +553,12 @@ declare module sn {
             new (): IGlideEncrypter;
             decrypt(value: string): string;
             encrypt(value: string): string;
+        }
+        
+        export interface IJSON {
+            new(): IJSON;
+            encode(obj: any): string;
+            decode<T>(jsonStr: string): T;
         }
     }
 } 
