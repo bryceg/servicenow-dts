@@ -1,6 +1,28 @@
 // Copyright © 2015 - Avanade, Inc.
 //Most of this is copied from https://github.com/Microsoft/TypeScript/blob/master/src/lib/core.d.ts
 
+
+/**
+  * Evaluates JavaScript code and executes it. 
+  * @param x A String value that contains valid JavaScript code.
+  */
+declare function eval(x: string): any;
+
+/**
+  * Converts A string to an integer.
+  * @param s A string to convert into a number.
+  * @param radix A value between 2 and 36 that specifies the base of the number in numString. 
+  * If this argument is not supplied, strings with a prefix of '0x' are considered hexadecimal.
+  * All other strings are considered decimal.
+  */
+declare function parseInt(s: string, radix?: number): number;
+
+/**
+  * Converts a string to a floating-point number. 
+  * @param string A string that contains a floating-point number. 
+  */
+declare function parseFloat(string: string): number;
+
 interface PropertyDescriptor {
     configurable?: boolean;
     enumerable?: boolean;
