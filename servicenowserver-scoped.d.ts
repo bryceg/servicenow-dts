@@ -5,6 +5,7 @@ declare var current: sn.Server.IGlideServerRecord;
 declare var previous: sn.Server.IGlideServerRecord;
 declare var wizard: sn.Server.IGlideServerRecord;
 declare var GlideAggregate: sn.Server.IGlideAggregate;
+declare var GlideSysAttachment: sn.Server.IGlideSysAttachment;
 declare var GlideDateTime: sn.Server.IGlideDateTime;
 declare var GlideDuration: sn.Server.IGlideDuration;
 declare var GlideElement: sn.Server.IGlideElement;
@@ -55,10 +56,15 @@ declare module sn {
 
             eventQueue(eventName: string, gr: IGlideServerRecord, optionalParam1: string, optionalParam2: string, eventQueue: string): void;
             getMessage(id: string, messageFormat?: string): string;
-            getProperty(key: string, altObject?: any): any; // returns string unless property not found, then returns defaultReturnObject
+            getProperty<T>(key: string, altObject?: T): T;
             include(include: string): void;
             nil(object: any): boolean;
             tableExists(table: string): boolean;
+            generateGUID(): string;
+            getCssCacheVersionString(): string;
+            getCurrentApplicationId(): string;
+            getCurrentScopeName(): string;
+            getCallerScopeName(): string;
 
             ///////////////////////////////////////
             // Scoped Script Logging
@@ -96,7 +102,7 @@ declare module sn {
             /////////////////////////////////////
             //  Base 64 functions
             /////////////////////////////////////
-            base64Encode(encode: string): string;
+            base64Encode(encode: any): string;
             base64Decode(decode: string): string;
         }
 
@@ -316,7 +322,7 @@ declare module sn {
 
         //http://wiki.servicenow.com/index.php?title=Scoped_GlideFilter_API_Reference#gsc.tab=0
         export interface IGlideFilter {
-            checkRecord(gr: IGlideServerRecord, filter: string, matchAll: Object): boolean;
+            checkRecord(gr: IGlideServerRecord, filter: string, matchAll?: Object): boolean;
         }
 
         //http://wiki.servicenow.com/index.php?title=Scoped_GlideLocale_API_Reference#gsc.tab=0
@@ -338,6 +344,13 @@ declare module sn {
             load(sysId: string, timeZone: string, excludeSpanId: string): void;
             whenNext(time: IGlideDateTime, timeZone: string): number;
             setTimeZone(tz: string): void;
+        }
+
+        export interface IGlideSysAttachment {
+            new(): IGlideSysAttachment;
+            getContent(record: IGlideServerRecord): any;
+            copy(sourceTable: string, sourceSysId: string, destinationTable: string, destinationSysId: string): void;
+            write(record: IGlideServerRecord, fileName: string, contentType: string, data: any): void;
         }
 
         export interface IGlideAjax {
