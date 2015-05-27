@@ -127,8 +127,8 @@ declare module sn {
             addNotNullQuery(fieldName: string): IGlideQueryCondition;
             addNullQuery(fieldName: string): IGlideQueryCondition;
             addQuery(encodedQuery: string): IGlideQueryCondition;
-            addQuery(fieldName: string, value: string): IGlideQueryCondition;
-            addQuery(fieldName: string, operator: string, value: string): IGlideQueryCondition;
+            addQuery(fieldName: string, value: Object): IGlideQueryCondition;
+            addQuery(fieldName: string, operator: string, value: Object): IGlideQueryCondition;
             canCreate(): boolean;
             canDelete(): boolean;
             canRead(): boolean;
