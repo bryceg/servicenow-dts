@@ -1,3 +1,5 @@
+///<reference path="rhino.d.ts" />
+
 declare var gs: sn.Server.IGlideSystem;
 declare var g_request: sn.Server.IGlideServletRequest;
 declare var g_response: sn.Server.IGlideServletResponse;
@@ -5,7 +7,6 @@ declare var current: sn.Server.IGlideServerRecord;
 declare var previous: sn.Server.IGlideServerRecord;
 declare var wizard: sn.Server.IGlideServerRecord;
 declare var GlideAggregate: sn.Server.IGlideAggregate;
-declare var GlideSysAttachment: sn.Server.IGlideSysAttachment;
 declare var GlideDateTime: sn.Server.IGlideDateTime;
 declare var GlideDuration: sn.Server.IGlideDuration;
 declare var GlideElement: sn.Server.IGlideElement;
@@ -13,11 +14,15 @@ declare var GlideFilter: sn.Server.IGlideFilter;
 declare var GlideLocal: sn.Server.IGlideLocal;
 declare var GlideRecord: sn.Server.IGlideServerRecord;
 declare var GlideRecordSecure: sn.Server.IGlideServerRecord;
+declare var GlideScopedEvaluator: sn.Server.IGlideScopedEvaluator;
+declare var GlideTableHierarchy: sn.Server.IGlideTableHierarchy;
 declare var GlideSchedule: sn.Server.IGlideSchedule;
+declare var GlideSysAttachment: sn.Server.IGlideSysAttachment;
 declare var GlideTime: sn.Server.IGlideTime;
 declare var XMLDocument2: sn.Server.IXMLDocument2;
 declare var global: sn.Server.IGlobalScope;
 declare var sn_ws: sn.Server.ISN_WS;
+declare var Class: sn.Server.IClass;
 
 declare module sn {
     export interface IArrayList {
@@ -417,6 +422,20 @@ declare module sn {
 
         export interface IGlideServletResponse {
             setContentType(type: string): void;
+        }
+
+        export interface IGlideTableHierarchy {
+            new(tableName: string): IGlideTableHierarchy;
+            getAllExtensions(): Array<string>;
+            getBase(): string;
+            getHierarchy(): Array<string>;
+            getName(): string;
+            getRoot(): string;
+            getTableExtensions(): Array<string>;
+            getTables(): Array<string>;
+            hasExtensions(): boolean;
+            isBaseClass(): boolean;
+            isSoloClass(): boolean;
         }
 
         //http://wiki.servicenow.com/index.php?title=Scoped_XMLDocument2_API_Reference#gsc.tab=0
