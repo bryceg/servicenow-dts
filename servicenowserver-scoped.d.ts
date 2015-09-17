@@ -7,6 +7,7 @@ declare var current: sn.Server.IGlideServerRecord;
 declare var previous: sn.Server.IGlideServerRecord;
 declare var wizard: sn.Server.IGlideServerRecord;
 declare var GlideAggregate: sn.Server.IGlideAggregate;
+declare var GlideDate: sn.Server.IGlideDate;
 declare var GlideDateTime: sn.Server.IGlideDateTime;
 declare var GlideDuration: sn.Server.IGlideDuration;
 declare var GlideElement: sn.Server.IGlideElement;
@@ -23,6 +24,9 @@ declare var XMLDocument2: sn.Server.IXMLDocument2;
 declare var global: sn.Server.IGlobalScope;
 declare var sn_ws: sn.Server.ISN_WS;
 declare var Class: sn.Server.IClass;
+declare var GlideGuid: sn.Server.IGlideGuid;
+declare var GlideAjax: sn.Server.IGlideAjax;
+declare var RP: sn.Server.IRP;
 
 declare module sn {
     export interface IArrayList {
@@ -59,8 +63,9 @@ declare module sn {
             // General
             ///////////////////////////////////////
 
-            eventQueue(eventName: string, gr: IGlideServerRecord, optionalParam1: string, optionalParam2: string, eventQueue: string): void;
+            eventQueue(eventName: string, gr: IGlideServerRecord, optionalParam1: string, optionalParam2: string, eventQueue?: string): void;
             getMessage(id: string, messageFormat?: string): string;
+            getMessageS(id: string, object?: any): string;
             getProperty<T>(key: string, altObject?: T): T;
             include(include: string): void;
             nil(object: any): boolean;
@@ -149,6 +154,7 @@ declare module sn {
             orderBy(name: string): void;
             orderByDesc(name: string): void;
             query(): void;
+            queryNoDomain(): void;
             query(query: string): void;
             query(field: string, value: string): void;
 
@@ -303,6 +309,17 @@ declare module sn {
             setYearUTC(year: number): void;
         }
 
+        //http://wiki.servicenow.com/index.php?title=Scoped_GlideDate_API_Reference#gsc.tab=0
+        export interface IGlideDate {
+            getByFormat(format: string): string;
+            getDisplayValue(): string;
+            getDisplayValueInternal(): string;
+            getValue(): string;
+            setDisplayValue(asDisplayed: string): void;
+            setValue(o: string): void;
+            subtract(start: IGlideDate, end: IGlideDate): IGlideDuration;
+        }
+
         export interface IGlideScopedEvaluator{
             new(): IGlideScopedEvaluator;
             evaluateScript(grObj: IGlideServerRecord, scriptField: string, variables: Object): Object;
@@ -363,6 +380,8 @@ declare module sn {
             getParameterNames(): Array<string>;
             getParameterValues(): Array<string>;
             newItem(name: string): IGlideAjaxXml;
+
+            addParam(name: string,value:string): void;
         }
 
         export interface IGlideAjaxXml {
@@ -467,23 +486,6 @@ declare module sn {
         export interface IXMLNodeIterator {
             hasNext(): Boolean;
             next(): IXMLNode;
-        }
-
-        export interface IJSUtil {
-            has(item: Object): boolean;
-            doesNotHave(item: Object): boolean;
-            nil(item: Object): boolean;
-            notNil(item: Object): boolean;
-            instance_of(item: Object, klass: string): boolean;
-            type_of(value: Object): string;
-            isJavaObject(value: any): boolean;
-            toBoolean(value: any): boolean;
-            getBooleanValue(gr: IGlideServerRecord, field: string): boolean;
-            logObject(obj: Object, name?: string): void;
-            escapeText(text: string): string;
-            unescapeText(text: string): string;
-            escapeAttr(text: string): string;
-            unescapeAttr(text: string): string;
         }
 
         export interface ITableUtils {
@@ -632,6 +634,21 @@ declare module sn {
 
         export interface IJSUtil {
             describeObject(obj:any, name:string): any;
+        }
+
+        export interface IGlideGuid{
+            generate(): string;
+        }
+
+        export interface IRP {
+            getReferringURL(): string;
+            isDialog(): boolean;
+            isHomePage(): boolean;
+            isPrint(): boolean;
+            isMobile(): boolean;
+            getParameterValue(value: string): string;
+            getParameters(): Array<string>;
+            getViewID(): string;
         }
     }
 }
