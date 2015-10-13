@@ -556,7 +556,6 @@ declare module sn {
             new(): IJSON;
             encode(obj: any): string;
             decode<T>(jsonStr: string): T;
-            parse<T>(jsonStr: string): T;
             stringify(obj: any): string;
             parse<T>(json: string): T;
         }
