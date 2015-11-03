@@ -1,6 +1,7 @@
 ///<reference path="rhino.d.ts" />
 
 declare var gs: sn.Server.IGlideSystem;
+declare var g_processor: sn.Server.IGlideScriptedProcessor;
 declare var g_request: sn.Server.IGlideServletRequest;
 declare var g_response: sn.Server.IGlideServletResponse;
 declare var current: sn.Server.IGlideServerRecord;
@@ -11,8 +12,10 @@ declare var GlideDate: sn.Server.IGlideDate;
 declare var GlideDateTime: sn.Server.IGlideDateTime;
 declare var GlideDuration: sn.Server.IGlideDuration;
 declare var GlideElement: sn.Server.IGlideElement;
+declare var GlideEmailOutbound: sn.Server.IGlideEmailOutbound;
 declare var GlideFilter: sn.Server.IGlideFilter;
-declare var GlideLocal: sn.Server.IGlideLocal;
+declare var GlideLocale: sn.Server.IGlideLocale;
+declare var GlidePluginManager: sn.Server.IGlidePluginManager;
 declare var GlideRecord: sn.Server.IGlideServerRecord;
 declare var GlideRecordSecure: sn.Server.IGlideServerRecord;
 declare var GlideScopedEvaluator: sn.Server.IGlideScopedEvaluator;
@@ -27,6 +30,7 @@ declare var Class: sn.Server.IClass;
 declare var GlideGuid: sn.Server.IGlideGuid;
 declare var GlideAjax: sn.Server.IGlideAjax;
 declare var RP: sn.Server.IRP;
+declare var ScopedGlideURI: sn.Server.IGlideURI;
 
 declare module sn {
     export interface IArrayList {
@@ -95,7 +99,7 @@ declare module sn {
             ///////////////////////////////////////
             addErrorMessage(message: string): void;
             addInfoMessage(message: string): void;
-            getSession(): string;
+            getSession(): string|IGlideSession;
             getSessionID(): string;
             getTimeZoneName(): string;
             getUrlOnStack(): string;
@@ -122,6 +126,13 @@ declare module sn {
             addCondition(name: string, oper: string, value: Object): IGlideQueryCondition;
             addOrCondition(name: string, oper: string, value: Object): IGlideQueryCondition;
             addOrCondition(name: string, value: Object): IGlideQueryCondition;
+        }
+        
+        export interface IGlideScriptedProcessor {
+            redirect(url: string): void;
+            writeOutput(s: string): void;
+            writeOutput(contentType: string, s: string): void;
+            writeJSON(o: Object): void;
         }
 
         //http://wiki.servicenow.com/index.php?title=Scoped_GlideRecord_API_Reference#gsc.tab=0
@@ -243,6 +254,29 @@ declare module sn {
             setValue(value: Object): void;
             toString(): string;
         }
+        
+        //http://wiki.servicenow.com/index.php?title=Scoped_GlideEmailOutbound_API_Reference#gsc.tab=0
+        export interface IGlideEmailOutbound {
+            getSubject(): string;
+            setSubject(subject: string): void;
+            setFrom(address: string): void;
+            setReplyTo(address: string): void;
+            addAddress(type: string, address: string, displayName: string);
+            setBody(bodyText: string): void;
+        }
+        
+        export interface IGlideSession {
+            isInteractive(): boolean;
+            isLoggedIn(): boolean;
+            getClientData(paramName: string): string;
+            getClientIP(): string;
+            getCurrentApplicationId(): string;
+            getLanguage(): string;
+            getTimeZoneName(): string;
+            getSessionToken(): string;
+            getUrlOnStack(): string;
+            putClientData(paramName: string, paramValue: string): void;
+        }
 
         //http://wiki.servicenow.com/index.php?title=Scoped_GlideDateTime_API_Reference#gsc.tab=0
         export interface IGlideDateTime {
@@ -348,8 +382,8 @@ declare module sn {
         }
 
         //http://wiki.servicenow.com/index.php?title=Scoped_GlideLocale_API_Reference#gsc.tab=0
-        export interface IGlideLocal {
-            get(): IGlideLocal;
+        export interface IGlideLocale {
+            get(): IGlideLocale;
             getGroupingSeparator(): string;
             getDecimalSeparator(): string;
         }
@@ -430,6 +464,10 @@ declare module sn {
             isMemberOf(group: string): boolean;
             savePreference(name: string, value: string): void;
         }
+        
+        export interface IGlidePluginManager {
+            isActive(pluginId: string): boolean;
+        }
 
         export interface IGlideServletRequest {
             getContentType(): string;
@@ -455,6 +493,13 @@ declare module sn {
             hasExtensions(): boolean;
             isBaseClass(): boolean;
             isSoloClass(): boolean;
+        }
+        
+        export interface IGlideURI {
+            get(name: string): string;
+            set(name: string, value: string): void;
+            toString(path: string): string;
+            getFileFromPath(): string;
         }
 
         //http://wiki.servicenow.com/index.php?title=Scoped_XMLDocument2_API_Reference#gsc.tab=0
