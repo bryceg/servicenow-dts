@@ -716,5 +716,44 @@ declare module sn {
             hasNext(): Boolean;
             next(): IXMLNode;
         }
+		        
+        //https://docs.servicenow.com/bundle/geneva-servicenow-platform/page/app-store/dev_portal/API_reference/ScriptableServiceRequest/concept/c_ScriptableServiceRequest.html
+        export interface IRESTAPIRequest<T> {
+            body: IRESTAPIRequestBody<T>;
+            pathParams: Object;
+            queryParams: Object;
+            uri: string;
+            url: string;
+            headers: Object;
+            getHeader(header: string): string;
+            getSupportedResponseContentTypes(): Array<string>;
+        }
+        
+        //https://docs.servicenow.com/bundle/geneva-servicenow-platform/page/app-store/dev_portal/API_reference/ScriptableServiceRequestBody/concept/c_ScriptableServiceRequestBody.html
+        export interface IRESTAPIRequestBody<T> {
+            data: T;
+            dataStream: any;
+            dataString: string;
+            hasNext(): boolean;
+            nextEntry(): any;
+        }
+        
+        //https://docs.servicenow.com/bundle/geneva-servicenow-platform/page/app-store/dev_portal/API_reference/ScriptableServiceResponseBuilder/concept/c_ScriptableServiceResponseBuilder.html
+        export interface IRESTAPIResponse {
+            getStreamWriter(): IRESTAPIResponseStream;
+            setBody(body: Object): void;
+            setHeaders(headers: Object): void;
+            setLocation(location: string): void;
+            setStatus(status: number): void;
+            setHeader(header: string, value: string): void;
+            setContentType(contentType: string): void;
+            setError(error: Object): void;
+        }
+        
+        //https://docs.servicenow.com/bundle/geneva-servicenow-platform/page/app-store/dev_portal/API_reference/ScriptableServiceResponseStreamWriter/concept/c_ScriptableServiceRespStreamWriter.html
+        export interface IRESTAPIResponseStream {
+            writeStream(stream: Object);
+            writeString(data: string);
+        }
     }
 }
