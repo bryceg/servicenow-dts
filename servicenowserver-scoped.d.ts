@@ -279,7 +279,7 @@ declare module sn {
             canDelete(): boolean;
             canRead(): boolean;
             canWrite(): boolean;
-            chooseWindow(f: number, l: number, forceCount: boolean): void;
+            chooseWindow(f: number, l: number, forceCount?: boolean): void;
             hasNext(): boolean;
             isActionAborted(): boolean;
             isNewRecord(): boolean;
@@ -720,11 +720,11 @@ declare module sn {
         //https://docs.servicenow.com/bundle/geneva-servicenow-platform/page/app-store/dev_portal/API_reference/ScriptableServiceRequest/concept/c_ScriptableServiceRequest.html
         export interface IRESTAPIRequest<T> {
             body: IRESTAPIRequestBody<T>;
-            pathParams: Object;
-            queryParams: Object;
+            pathParams: any;
+            queryParams: any;
             uri: string;
             url: string;
-            headers: Object;
+            headers: any;
             getHeader(header: string): string;
             getSupportedResponseContentTypes(): Array<string>;
         }
@@ -741,13 +741,13 @@ declare module sn {
         //https://docs.servicenow.com/bundle/geneva-servicenow-platform/page/app-store/dev_portal/API_reference/ScriptableServiceResponseBuilder/concept/c_ScriptableServiceResponseBuilder.html
         export interface IRESTAPIResponse {
             getStreamWriter(): IRESTAPIResponseStream;
-            setBody(body: Object): void;
-            setHeaders(headers: Object): void;
+            setBody(body: any): void;
+            setHeaders(headers: any): void;
             setLocation(location: string): void;
             setStatus(status: number): void;
             setHeader(header: string, value: string): void;
             setContentType(contentType: string): void;
-            setError(error: Object): void;
+            setError(error: any): void;
         }
         
         //https://docs.servicenow.com/bundle/geneva-servicenow-platform/page/app-store/dev_portal/API_reference/ScriptableServiceResponseStreamWriter/concept/c_ScriptableServiceRespStreamWriter.html
