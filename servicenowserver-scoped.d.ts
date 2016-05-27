@@ -584,6 +584,7 @@ declare module sn {
             new (name: string, methodName: string): IRESTMessageV2;
             execute(): IRESTResponseV2;
             executeAsync(): IRESTResponseV2;
+            setAuthenticationProfile(type: string, profileId: string): void;
             setHttpMethod(method: string): void;
             setHttpTimeout(timeoutMs: number): void;
             setBasicAuth(userName: string, userPass: string): void;
