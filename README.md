@@ -11,7 +11,7 @@ Recommend using typings npm project to install type definitions https://github.c
 Scoped Apps
 ---------------
 Using typings  
-- typings install github:bryceg/servicenow-dts/server/scoped-<ServiceNow_version>/servicenowserver.d.ts@>=1.0
+- typings install github:bryceg/servicenow-dts/server/scoped-<ServiceNow_version>/servicenowserver.d.ts#1.0 --global
 
 
 Global and Scoped ES3 Apps
