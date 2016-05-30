@@ -1,5 +1,3 @@
-///<reference path="rhino.d.ts" />
-
 declare var gs: sn.Server.IGlideSystem;
 declare var current: sn.Server.IGlideServerRecord;
 declare var previous: sn.Server.IGlideServerRecord;
@@ -584,7 +582,6 @@ declare module sn {
             new (name: string, methodName: string): IRESTMessageV2;
             execute(): IRESTResponseV2;
             executeAsync(): IRESTResponseV2;
-            setAuthenticationProfile(type: string, profileId: string): void;
             setHttpMethod(method: string): void;
             setHttpTimeout(timeoutMs: number): void;
             setBasicAuth(userName: string, userPass: string): void;

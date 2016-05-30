@@ -1,6 +1,4 @@
-﻿/// <reference path="rhino.d.ts" />
-
-declare var gs: sn.Server.IGlideSystem;
+﻿declare var gs: sn.Server.IGlideSystem;
 declare var current: sn.Server.IGlideServerRecord;
 declare var previous: sn.Server.IGlideServerRecord;
 
