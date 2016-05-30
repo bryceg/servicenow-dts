@@ -6,7 +6,7 @@ TypeScript Definitions for Service Now's APIs.  This repository is structured in
 Installation to your project
 ==============
 
-Recommend using typings npm project to install type definitions https://github.com/typings/typing
+Recommend using typings npm project to install type definitions https://github.com/typings/typings
 
 Scoped Apps
 ---------------
