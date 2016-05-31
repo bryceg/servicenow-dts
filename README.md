@@ -11,13 +11,13 @@ Recommend using typings npm project to install type definitions https://github.c
 Scoped Apps
 ---------------
 Using typings  
-- typings install github:bryceg/servicenow-dts/server/scoped-<ServiceNow_version>/servicenowserver.d.ts#1.0 --global
+- typings install github:bryceg/servicenow-dts/server/scoped-VERSION/servicenowserver.d.ts#1.0 --global
 
 
 Global and Scoped ES3 Apps
 ---------------
 For global or scoped apps prior to Helsinki that target ES3, add the rhino d.ts reference instead of using native lib.dts
-- typings install github:bryceg/servicenow-dts/server/rhino-es3.d.ts@>=1.0
+- typings install github:bryceg/servicenow-dts/server/rhino-es3.d.ts#1.0 --global
 
 Update your tsconfig to not use lib.d.ts when using es3 rhino
 ```javascript
