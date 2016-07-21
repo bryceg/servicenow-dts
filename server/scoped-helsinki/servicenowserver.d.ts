@@ -398,8 +398,7 @@ declare module sn {
             ///////////////////////////////////////
 
             eventQueue(eventName: string, gr: IGlideServerRecord, optionalParam1: string, optionalParam2: string, eventQueue?: string): void;
-            getMessage(id: string, messageFormat?: string): string;
-            getMessageS(id: string, object?: any): string;
+            getMessage(id: string, object?: any): string;
             getProperty<T>(key: string, altObject?: T): T;
             include(include: string): void;
             nil(object: any): boolean;
