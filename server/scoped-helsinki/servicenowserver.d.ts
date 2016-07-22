@@ -48,9 +48,9 @@ declare module sn {
         // http://wiki.servicenow.com/index.php?title=GlideAggregate
         export interface IGlideAggregate extends IGlideServerRecord {
             new (tableName: string): IGlideAggregate;
-            addAggregate(agg: string, name: string): void;
+            addAggregate(agg: string, name?: string): void;
             addEncodedQuery(query: string): void;
-            getAggregate(agg: string, name: string): void;
+            getAggregate(agg: string, name?: string): string;
             getAggregateEncodedQuery(): void;
             groupBy(name: string): void;
             orderByAggregate(name: string): void;
