@@ -532,7 +532,6 @@ declare module sn {
             Class: sn.Server.IClass;
             AbstractAjaxProcessor: sn.Server.IGlideAjax;
             GlideStringUtil: sn.Server.IGlideStringUtil;
-            JSON: sn.Server.IJSON;
             JSUtil: sn.Server.IJSUtil;
         }
 
@@ -552,15 +551,6 @@ declare module sn {
             setLevel(level: string);
             getLevel(level: string);
             debugOn(): boolean;
-        }
-
-        export interface IJSON {
-            new (): IJSON;
-            encode(obj: any): string;
-            decode<T>(jsonStr: string): T;
-            parse<T>(jsonStr: string): T;
-            stringify(obj: any): string;
-            parse<T>(json: string): T;
         }
 
         // http://wiki.servicenow.com/index.php?title=JSUtil
