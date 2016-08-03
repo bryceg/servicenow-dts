@@ -1,11 +1,4 @@
 declare var gs: sn.Server.IGlideSystem;
-declare var current: sn.Server.IGlideServerRecord;
-declare var previous: sn.Server.IGlideServerRecord;
-
-declare var g_processor: sn.Server.IGlideScriptedProcessor;
-declare var g_request: sn.Server.IGlideServletRequest;
-declare var g_response: sn.Server.IGlideServletResponse;
-
 declare var GlideAggregate: sn.Server.IGlideAggregate;
 declare var GlideAjax: sn.Server.IGlideAjax;
 declare var GlideDate: sn.Server.IGlideDate;
@@ -35,14 +28,8 @@ declare var sn_ws: sn.Server.ISN_WS;
 declare var Class: sn.Server.IClass;
 declare var RP: sn.Server.IRP;
 
-declare module sn {
-
-    export interface IArrayList {
-        size(): number;
-        get(i: number): any;
-    }
-
-    export module Server {
+declare namespace sn {
+    namespace Server {
 
         // Glide API
 

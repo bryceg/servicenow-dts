@@ -1,9 +1,4 @@
 declare var gs: sn.Server.IGlideSystem;
-
-declare var g_processor: sn.Server.IGlideScriptedProcessor;
-declare var g_request: sn.Server.IGlideServletRequest;
-declare var g_response: sn.Server.IGlideServletResponse;
-
 declare var GlideAggregate: sn.Server.IGlideAggregate;
 declare var GlideAjax: sn.Server.IGlideAjax;
 declare var GlideDate: sn.Server.IGlideDate;
@@ -33,15 +28,8 @@ declare var sn_ws: sn.Server.ISN_WS;
 declare var Class: sn.Server.IClass;
 declare var RP: sn.Server.IRP;
 
-declare module sn {
-
-    export interface IArrayList {
-        size(): number;
-        get(i: number): any;
-    }
-
-    export module Server {
-
+declare namespace sn {
+    namespace Server {
         // Glide API
 
         // http://wiki.servicenow.com/index.php?title=Scoped_GlideAggregate_API_Reference
@@ -702,7 +690,7 @@ declare module sn {
             hasNext(): Boolean;
             next(): IXMLNode;
         }
-		        
+                
         //https://docs.servicenow.com/bundle/geneva-servicenow-platform/page/app-store/dev_portal/API_reference/ScriptableServiceRequest/concept/c_ScriptableServiceRequest.html
         export interface IRESTAPIRequest<T> {
             body: IRESTAPIRequestBody<T>;
@@ -714,7 +702,7 @@ declare module sn {
             getHeader(header: string): string;
             getSupportedResponseContentTypes(): Array<string>;
         }
-        
+
         //https://docs.servicenow.com/bundle/geneva-servicenow-platform/page/app-store/dev_portal/API_reference/ScriptableServiceRequestBody/concept/c_ScriptableServiceRequestBody.html
         export interface IRESTAPIRequestBody<T> {
             data: T;
@@ -723,7 +711,7 @@ declare module sn {
             hasNext(): boolean;
             nextEntry(): any;
         }
-        
+
         //https://docs.servicenow.com/bundle/geneva-servicenow-platform/page/app-store/dev_portal/API_reference/ScriptableServiceResponseBuilder/concept/c_ScriptableServiceResponseBuilder.html
         export interface IRESTAPIResponse {
             getStreamWriter(): IRESTAPIResponseStream;
@@ -735,7 +723,7 @@ declare module sn {
             setContentType(contentType: string): void;
             setError(error: any): void;
         }
-        
+
         //https://docs.servicenow.com/bundle/geneva-servicenow-platform/page/app-store/dev_portal/API_reference/ScriptableServiceResponseStreamWriter/concept/c_ScriptableServiceRespStreamWriter.html
         export interface IRESTAPIResponseStream {
             writeStream(stream: Object);
