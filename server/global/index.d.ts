@@ -290,6 +290,7 @@ declare module sn {
 
             get(name: string, value?: string): boolean;
             getAttribute(attribute: string): string;
+            getDisplayName(): string;
             getClassDisplayValue(): string;
             getDisplayValue(): string;
             getED(): IElementDescriptor;

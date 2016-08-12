@@ -281,6 +281,7 @@ declare namespace sn {
             // Get Method Summary
             ///////////////////////////////////////
             get(name: string, value?: string): boolean;
+            getDisplayName(): string;
             getDisplayValue(): string;
             getElement(columnName: string): IGlideElement;
             getEncodedQuery(): string;
