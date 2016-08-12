@@ -283,7 +283,7 @@ declare namespace sn {
             ///////////////////////////////////////
             get(name: string, value?: string): boolean;
             getDisplayName(): string;
-            getDisplayValue(): string;
+            getDisplayValue(field?: string): string;
             getElement(columnName: string): IGlideElement;
             getEncodedQuery(): string;
             getLastErrorMessage(): string;

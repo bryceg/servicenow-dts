@@ -292,7 +292,7 @@ declare module sn {
             getAttribute(attribute: string): string;
             getDisplayName(): string;
             getClassDisplayValue(): string;
-            getDisplayValue(): string;
+            getDisplayValue(field?: string): string;
             getED(): IElementDescriptor;
             getElement(columnName: string): IGlideElement;
             getEncodedQuery(): string;
