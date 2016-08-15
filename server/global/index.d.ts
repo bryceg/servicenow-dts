@@ -11,6 +11,7 @@ declare var GlideDateTime: sn.Server.IGlideDateTime;
 declare var GlideDuration: sn.Server.IGlideDuration;
 declare var GlideElement: sn.Server.IGlideElement;
 declare var GlideEncrypter: sn.Server.IGlideEncrypter;
+declare var GlideFilter: sn.Server.IGlideFilter;
 declare var GlideHTTPRequest: sn.Server.IGlideHTTPRequest;
 declare var GlideRecord: sn.Server.IGlideServerRecord;
 declare var GlideRecordSecure: sn.Server.IGlideServerRecord;
@@ -216,6 +217,10 @@ declare module sn {
             new (): IGlideEncrypter;
             decrypt(value: string): string;
             encrypt(value: string): string;
+        }
+        
+        export interface IGlideFilter {
+            checkRecord(gr: IGlideServerRecord, filter: string, matchAll?: Object): boolean;
         }
 
         export interface IGlideHTTPRequest {
