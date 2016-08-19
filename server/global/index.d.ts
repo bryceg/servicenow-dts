@@ -404,6 +404,7 @@ declare module sn {
             nil(object: any): boolean;
             print(message: string): void;
             tableExists(table: string): boolean;
+            unloadRecordToXML(record: IGlideServerRecord, format: boolean): string;
             workflowFlush(gr: IGlideServerRecord): void;
 
             ///////////////////////////////////////
