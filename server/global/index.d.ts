@@ -408,6 +408,16 @@ declare module sn {
             workflowFlush(gr: IGlideServerRecord): void;
 
             ///////////////////////////////////////
+            // Script Logging
+            ///////////////////////////////////////
+
+            debug(message: string, parm1?: any, parm2?: any, parm3?: any, parm4?: any, parm5?: any): void;
+            error(message: string, parm1?: any, parm2?: any, parm3?: any, parm4?: any, parm5?: any): void;
+            info(message: string, parm1?: any, parm2?: any, parm3?: any, parm4?: any, parm5?: any): void;
+            warn(message: string, parm1?: any, parm2?: any, parm3?: any, parm4?: any, parm5?: any): void;
+            isDebugging(): boolean;
+
+            ///////////////////////////////////////
             // Date and Time Functions
             ///////////////////////////////////////
 
