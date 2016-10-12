@@ -295,6 +295,7 @@ declare module sn {
 
             get(name: string, value?: string): boolean;
             getAttribute(attribute: string): string;
+            getClassDisplayValue(): string;
             getDisplayName(): string;
             getClassDisplayValue(): string;
             getDisplayValue(field?: string): string;
