@@ -85,8 +85,7 @@ declare module sn {
             getUserTimeZone(): any; // todo: define TimeZoneObject
             setTZ(tz: any): void; // todo: tz is a TimeZoneObject
             setValue(value: string, format?: string): void;
-            setValue(value: IGlideDateTime): void;
-            setValue(value: number): void;
+            setValue(value: string|number|IGlideDateTime): void;
             setValueUTC(value: string, format: string): void;
             setGlideDateTime(gdt: IGlideDateTime): void;
             isDST(): boolean;

@@ -83,7 +83,7 @@ declare namespace sn {
             new (g: IGlideDateTime): IGlideDateTime;
 
             hasDate(): boolean;
-            setValue(o: string): void;
+            setValue(o: string|number|IGlideDateTime): void;
             setValueUTC(dt: string, format: string): void;
             setGlideDateTime(g: IGlideDateTime): void;
             isDST(): boolean;
