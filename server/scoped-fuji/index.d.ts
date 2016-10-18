@@ -107,7 +107,7 @@ declare namespace sn {
             getWeekOfYearLocalTime(): number;
             getWeekOfYearUTC(): number;
             getDayOfMonthLocalTime(): number;
-            dateDayOfMonthUTC(): number;
+            getDayOfMonthUTC(): number;
             setDayOfMonthLocalTime(day: number): void;
             setDayOfMonthUTC(day: number): void;
             getDaysInMonthUTC(): number;
