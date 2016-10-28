@@ -406,6 +406,7 @@ declare module sn {
             tableExists(table: string): boolean;
             unloadRecordToXML(record: IGlideServerRecord, format: boolean): string;
             workflowFlush(gr: IGlideServerRecord): void;
+            xmlToJSON(xml: string): any;
 
             ///////////////////////////////////////
             // Script Logging

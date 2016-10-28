@@ -400,6 +400,7 @@ declare namespace sn {
             getCurrentApplicationId(): string;
             getCurrentScopeName(): string;
             getCallerScopeName(): string;
+            xmlToJSON(xml: string): any;
 
             ///////////////////////////////////////
             // Scoped Script Logging
