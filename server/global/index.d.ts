@@ -337,6 +337,7 @@ declare module sn {
             ///////////////////////////////////////
             applyTemplate(template: string): void;
             update(reason?: string): string;
+            updateMultiple(): void;
             updateWithReferences(reason?: string): string;
 
             ///////////////////////////////////////
