@@ -162,7 +162,7 @@ declare namespace sn {
             changes(): boolean;
             changesFrom(value: Object): boolean;
             changesTo(value: Object): boolean;
-            getChoices(name: string): Array<any>;
+            getChoices(name?: string): Array<any>;
             getDecryptedValue(): string;
             getDisplayValue(maxCharacters?: number): string;
             getReferenceTable(): string;
