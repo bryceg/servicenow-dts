@@ -375,7 +375,9 @@ declare namespace sn {
 
         export interface IGlideSysAttachment {
             new (): IGlideSysAttachment;
+            deleteAttachment(sysId: string): void;
             getContent(record: IGlideServerRecord): any;
+            getContentBase64(record: IGlideServerRecord): string;
             copy(sourceTable: string, sourceSysId: string, destinationTable: string, destinationSysId: string): void;
             write(record: IGlideServerRecord, fileName: string, contentType: string, data: any): void;
         }
@@ -684,7 +686,8 @@ declare namespace sn {
             getNodeName(): string;
             hasAttribute(name: string): boolean;
             getAttribute(attribute: string): string;
-            getChildNodeIterator(): IXMLNodeIterator;
+            getChildNodeIterator(): IXMLNodeIterator;            
+            getTextContent(): string;
             toString(): string;
         }
 
