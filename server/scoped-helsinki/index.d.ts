@@ -81,60 +81,63 @@ declare namespace sn {
             new (value: string): IGlideDateTime;
             new (g: IGlideDateTime): IGlideDateTime;
 
-            hasDate(): boolean;
-            setValue(o: string|number|IGlideDateTime): void;
-            setValueUTC(dt: string, format: string): void;
-            setGlideDateTime(g: IGlideDateTime): void;
-            isDST(): boolean;
-            getDSTOffset(): number;
-            setDisplayValue(asDisplayed: string): void;
-            setDisplayValueInternal(value: string): void;
-            setDisplayValue(value: string, format: string): void;
-            getDisplayValue(): string;
-            getDisplayValueInternal(): string;
-            getValue(): string;
-            compareTo(o: Object): number;
-            getDayOfWeekLocalTime(): number;
-            getDayOfWeekUTC(): number;
-            getWeekOfYearLocalTime(): number;
-            getWeekOfYearUTC(): number;
-            getDayOfMonthLocalTime(): number;
-            getDayOfMonthUTC(): number;
-            setDayOfMonthLocalTime(day: number): void;
-            setDayOfMonthUTC(day: number): void;
-            getDaysInMonthUTC(): number;
-            getMonthLocalTime(): number;
-            getMonthUTC(): number;
-            getYearLocalTime(): number;
-            getYearUTC(): number;
-            getNumericValue(): number;
-            getTime(): IGlideTime;
-            getLocalTime(): IGlideTime;
-            getDate(): IGlideTime;
-            getLocalDate(): IGlideTime;
-            toString(): string;
             add(gd: IGlideTime): void;
+            add(milliseconds: number): void;
             addDaysLocalTime(amount: number): void;
             addDaysUTC(amount: number): void;
-            addWeeksLocalTime(amount: number): void;
-            addWeeksUTC(amount: number): void;
             addMonthsLocalTime(amount: number): void;
             addMonthsUTC(amount: number): void;
+            addSeconds(value: number): void;
+            addWeeksLocalTime(amount: number): void;
+            addWeeksUTC(amount: number): void;
             addYearsLocalTime(amount: number): void;
             addYearsUTC(amount: number): void;
+            compareTo(o: Object): number;
+            equals(o: Object): boolean;
+            getDSTOffset(): number;
+            getDate(): IGlideTime;
+            getDayOfMonthLocalTime(): number;
+            getDayOfMonthUTC(): number;
+            getDayOfWeekLocalTime(): number;
+            getDayOfWeekUTC(): number;
+            getDaysInMonthUTC(): number;
+            getDisplayValue(): string;
+            getDisplayValueInternal(): string;
+            getDSTOffset(): number;
+            getErrorMsg(): string;
+            getLocalDate(): IGlideTime;
+            getLocalTime(): IGlideTime;
+            getMonthLocalTime(): number;
+            getMonthUTC(): number;
+            getNumericValue(): number;
+            getTZOffset(): number;
+            getTime(): IGlideTime;
+            getValue(): string;
+            getWeekOfYearLocalTime(): number;
+            getWeekOfYearUTC(): number;
+            getYearLocalTime(): number;
+            getYearUTC(): number;
+            hasDate(): boolean;
+            isDST(): boolean;
+            isValid(): boolean;
+            setDayOfMonthLocalTime(day: number): void;
+            setDayOfMonthUTC(day: number): void;
+            setDisplayValue(asDisplayed: string): void;
+            setDisplayValue(value: string, format: string): void;
+            setDisplayValueInternal(value: string): void;
+            setGlideDateTime(g: IGlideDateTime): void;
+            setMonthLocalTime(month: number): void;
+            setMonthUTC(month: number): void;
+            setNumericValue(milliseconds: number): void;
+            setValue(o: string|number|IGlideDateTime): void;
+            setValueUTC(dt: string, format: string): void;
+            setYearLocalTime(year: number): void;
+            setYearUTC(year: number): void;
             subtract(gd: IGlideTime): void;
             subtract(start: IGlideDateTime, end: IGlideDateTime): IGlideDuration;
             subtract(value: number): void;
-            isValid(): boolean;
-            getErrorMsg(): string;
-            add(value: number): void;
-            addSeconds(value: number): void;
-            getTZOffset(): number;
-            equals(o: Object): boolean;
-            setMonthLocalTime(month: number): void;
-            setMonthUTC(month: number): void;
-            setYearLocalTime(year: number): void;
-            setYearUTC(year: number): void;
+            subtract(time: IGlideTime): void;
+            toString(): string;
         }
 
         // http://wiki.servicenow.com/index.php?title=Scoped_GlideDuration_API_Reference
@@ -390,16 +393,16 @@ declare namespace sn {
             ///////////////////////////////////////
 
             eventQueue(eventName: string, gr: IGlideServerRecord, optionalParam1: string, optionalParam2: string, eventQueue?: string): void;
+            generateGUID(): string;
+            getCallerScopeName(): string;
+            getCssCacheVersionString(): string;
+            getCurrentApplicationId(): string;
+            getCurrentScopeName(): string;
             getMessage(id: string, object?: any): string;
             getProperty<T>(key: string, altObject?: T): T;
             include(include: string): void;
             nil(object: any): boolean;
             tableExists(table: string): boolean;
-            generateGUID(): string;
-            getCssCacheVersionString(): string;
-            getCurrentApplicationId(): string;
-            getCurrentScopeName(): string;
-            getCallerScopeName(): string;
             xmlToJSON(xml: string): any;
 
             ///////////////////////////////////////
@@ -409,8 +412,8 @@ declare namespace sn {
             debug(message: string, parm1?: any, parm2?: any, parm3?: any, parm4?: any, parm5?: any): void;
             error(message: string, parm1?: any, parm2?: any, parm3?: any, parm4?: any, parm5?: any): void;
             info(message: string, parm1?: any, parm2?: any, parm3?: any, parm4?: any, parm5?: any): void;
-            warn(message: string, parm1?: any, parm2?: any, parm3?: any, parm4?: any, parm5?: any): void;
             isDebugging(): boolean;
+            warn(message: string, parm1?: any, parm2?: any, parm3?: any, parm4?: any, parm5?: any): void;
 
             ///////////////////////////////////////
             // Date and Time Functions
@@ -419,21 +422,21 @@ declare namespace sn {
             ///////////////////////////////////////
             //        User Session Functions
             ///////////////////////////////////////
-            addErrorMessage(message: string): void;
-            addInfoMessage(message: string): void;
-            getSession(): string | IGlideSession;
-            getSessionID(): string;
-            getTimeZoneName(): string;
-            getUrlOnStack(): string;
-            getUser(): IGlideUser;
-            getUserDisplayName(): string;
-            getUserID(): string;
-            getUserName(): string;
-            getUserNameByUserID(id: string): string;
-            hasRole(roleName: string): boolean;
-            isInteractive(): boolean;
-            isLoggedIn(): boolean;
             setRedirect(uri: string): void;
+            isLoggedIn(): boolean;
+            isInteractive(): boolean;
+            hasRole(roleName: string): boolean;
+            getUserNameByUserID(id: string): string;
+            getUserName(): string;
+            getUserID(): string;
+            getUserDisplayName(): string;
+            getUser(): IGlideUser;
+            getUrlOnStack(): string;
+            getTimeZoneName(): string;
+            getSessionID(): string;
+            getSession(): string | IGlideSession;
+            addInfoMessage(message: string): void;
+            addErrorMessage(message: string): void;
 
             /////////////////////////////////////
             //  Base 64 functions
@@ -562,36 +565,40 @@ declare namespace sn {
             new (name: string, methodName: string): IRESTMessageV2;
             execute(): IRESTResponseV2;
             executeAsync(): IRESTResponseV2;
+            getEndpoint(): string;
+            getRequestBody(): string;
+            getRequestHeader(headerName: string): string;
+            getRequestHeaders(): Object;
+            saveResponseBodyAsAttachment(tableName: string, recordSysId: string, fileName: string, encryptContext?: string): void;
             setAuthenticationProfile(type: string, profileId: string): void;
-            setHttpMethod(method: string): void;
-            setHttpTimeout(timeoutMs: number): void;
             setBasicAuth(userName: string, userPass: string): void;
-            setMutualAuth(profileName: string): void;
             setEccCorrelator(correlator: string): void;
             setEccParameter(name: string, value: string): void;
             setEndpoint(endpoint: string): void;
+            setHttpMethod(method: string): void;
+            setHttpTimeout(timeoutMs: number): void;
             setMIDServer(midServer: string): void;
+            setMutualAuth(profileName: string): void;
+            setQueryParameter(name: string, value: string): void;
             setRequestBody(body: string): void;
+            setRequestBodyFromAttachment(sys_id: string): void;
             setRequestHeader(name: string, value: string): void;
             setStringParameter(name: string, value: string): void;
             setStringParameterNoEscape(name: string, value: string): void;
-            setQueryParameter(name: string, value: string): void;
-            getRequestBody(): string;
-            getEndpoint(): string;
-            getRequestHeader(headerName: string): string;
-            getRequestHeaders(): Object;
         }
 
         export interface IRESTResponseV2 {
-            waitForResponse(timeoutSecs: number): void;
-            getStatusCode(): number;
-            getHeader(name: string): string;
-            getHeaders(): Object;
             getBody(): string;
-            haveError(): boolean;
+            getCookies(): {size: ()=>number, get: (index: number)=>string};
             getErrorCode(): number;
             getErrorMessage(): string;
+            getHeader(name: string): string;
+            getHeaders(): Object;
             getQueryString(): string;
+            getResponseAttachmentSysid(): string;
+            getStatusCode(): number;
+            haveError(): boolean;
+            waitForResponse(timeoutSecs: number): void;
         }
 
         export interface IRP {
