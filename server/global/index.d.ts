@@ -32,6 +32,7 @@ declare var JSUtil: sn.Server.IJSUtil;
 declare var JSValidator: sn.Server.IJSValidator;
 declare var sn_ws: sn.Server.ISN_WS;
 declare var TableUtils: sn.Server.ITableUtils;
+declare var XMLUtilJS: sn.Server.IXMLUtilJS;
 
 declare module sn {
 
@@ -634,6 +635,14 @@ declare module sn {
             hasExtensions(): boolean;
             isBaseClass(): boolean;
             isSoloClass(): boolean;
+        }
+
+        // https://developer.servicenow.com/app.do#!/api_doc?v=jakarta&id=c_XMLUtilJSAPI
+        export interface IXMLUtilJS {
+            escapeForXMLText(text: string): string;
+            stringToValue(str: string): string;
+            unescapeForXMLText(text: string): string;
+            valueToString(xmlValue: string): string;
         }
 
         export interface IWebServicePolicyValidator {
