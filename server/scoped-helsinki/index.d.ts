@@ -529,6 +529,7 @@ declare namespace sn {
             AbstractAjaxProcessor: sn.Server.IGlideAjax;
             GlideStringUtil: sn.Server.IGlideStringUtil;
             JSUtil: sn.Server.IJSUtil;
+            XMLUtilJS: sn.Server.IXMLUtilJS;
         }
 
         // http://wiki.servicenow.com/index.php?title=GSLog
@@ -668,6 +669,14 @@ declare namespace sn {
             hasExtensions(): boolean;
             isBaseClass(): boolean;
             isSoloClass(): boolean;
+        }
+
+        // https://developer.servicenow.com/app.do#!/api_doc?v=helsinki&id=c_XMLUtilJSAPI
+        export interface IXMLUtilJS {
+            escapeForXMLText(text: string): string;
+            stringToValue(str: string): string;
+            unescapeForXMLText(text: string): string;
+            valueToString(xmlValue: string): string;
         }
 
         // http://wiki.servicenow.com/index.php?title=Scoped_XMLDocument2_API_Reference
