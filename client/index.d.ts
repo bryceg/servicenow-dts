@@ -97,7 +97,7 @@ declare module sn {
              *  getReference() accepts a second parameter, a callback function.
              *  Warning: This requires a call to the server so using this function will require additional time and may introduce latency to your page.
              */
-            getReference(fieldName: string, callback: () => void): IGlideRecord;
+            getReference(fieldName: string, callback: () => void): IGlideClientRecord;
 
             /*
              *  Returns the decimal value of the specified field.
@@ -350,7 +350,7 @@ declare module sn {
             // Methods
             ///////////////////////////////////////
 
-            new (type: string): IGlideRecord;
+            new (type: string): IGlideClientRecord;
 
             /*
              * Adds a filter to return records based on 1, 2, or 3 arguments.
@@ -400,7 +400,7 @@ declare module sn {
             /*
              * Runs the query against the table based on the addQuery() filter.
              */
-            query(responseFunction: (results: IGlideRecord) => void): boolean;
+            query(responseFunction: (results: IGlideClientRecord) => void): boolean;
             /*
              * Sets the limit for how many records will be returned by the GlideRecord query.
              */
