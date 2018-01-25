@@ -168,6 +168,7 @@ declare namespace sn {
             getChoices(name?: string): Array<any>;
             getDecryptedValue(): string;
             getDisplayValue(maxCharacters?: number): string;
+            getED(): IGlideElementDescriptor
             getReferenceTable(): string;
             getRefRecord(): IGlideServerRecord;
             nil(): boolean;
@@ -175,6 +176,21 @@ declare namespace sn {
             setError(value: string): void;
             setValue(value: Object): void;
             toString(): string;
+        }
+
+        export interface IGlideElementDescriptor {
+            getAttachmentEncryptionType(): string;
+            getEncryptionType(): string;
+            getInternalType(): string;
+            getLabel(): string;
+            getLength(): number;
+            getName(): string;
+            getPlural(): boolean;
+            hasAttachmentsEncrypted(): boolean;
+            isAutoOrSysID(): boolean;
+            isChoiceTable(): boolean;
+            isEdgeEncrypted(): boolean;
+            isVirtual(): boolean;
         }
 
         // http://wiki.servicenow.com/index.php?title=Scoped_GlideEmailOutbound_API_Reference
