@@ -188,7 +188,7 @@ declare namespace sn {
             setSubject(subject: string): void;
             setFrom(address: string): void;
             setReplyTo(address: string): void;
-            addAddress(type: string, address: string, displayName: string);
+            addAddress(type: string, address: string, displayName: string): void;
             setBody(bodyText: string): void;
         }
 
@@ -541,17 +541,17 @@ declare namespace sn {
         export interface IGSLog {
             new (traceProperty: string, caller: string): IGSLog;
             initialize(traceProperty: string, caller: string): void;
-            logDebug(msg: string);
-            logInfo(msg: string);
-            logNotice(msg: string);
-            logWarning(msg: string);
-            logErr(msg: string);
-            logCrit(msg: string);
-            logAlert(msg: string);
-            logEmerg(msg: string);
-            log(level: string, msg: string);
-            setLevel(level: string);
-            getLevel(level: string);
+            logDebug(msg: string): void;
+            logInfo(msg: string): void;
+            logNotice(msg: string): void;
+            logWarning(msg: string): void;
+            logErr(msg: string): void;
+            logCrit(msg: string): void;
+            logAlert(msg: string): void;
+            logEmerg(msg: string): void;
+            log(level: string, msg: string): void;
+            setLevel(level: string): void;
+            getLevel(level: string): string;
             debugOn(): boolean;
         }
 
