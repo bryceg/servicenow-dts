@@ -181,7 +181,7 @@ declare namespace sn {
             setSubject(subject: string): void;
             setFrom(address: string): void;
             setReplyTo(address: string): void;
-            addAddress(type: string, address: string, displayName: string);
+            addAddress(type: string, address: string, displayName: string): void;
             setBody(bodyText: string): void;
         }
 
@@ -534,17 +534,17 @@ declare namespace sn {
         export interface IGSLog {
             new (traceProperty: string, caller: string): IGSLog;
             initialize(traceProperty: string, caller: string): void;
-            logDebug(msg: string);
-            logInfo(msg: string);
-            logNotice(msg: string);
-            logWarning(msg: string);
-            logErr(msg: string);
-            logCrit(msg: string);
-            logAlert(msg: string);
-            logEmerg(msg: string);
-            log(level: string, msg: string);
-            setLevel(level: string);
-            getLevel(level: string);
+            logDebug(msg: string): void;
+            logInfo(msg: string): void;
+            logNotice(msg: string): void;
+            logWarning(msg: string): void;
+            logErr(msg: string): void;
+            logCrit(msg: string): void;
+            logAlert(msg: string): void;
+            logEmerg(msg: string): void;
+            log(level: string, msg: string): void;
+            setLevel(level: string): void;
+            getLevel(level: string): string;
             debugOn(): boolean;
         }
 
@@ -713,7 +713,7 @@ declare namespace sn {
             hasNext(): Boolean;
             next(): IXMLNode;
         }
-		        
+
         //https://docs.servicenow.com/bundle/geneva-servicenow-platform/page/app-store/dev_portal/API_reference/ScriptableServiceRequest/concept/c_ScriptableServiceRequest.html
         export interface IRESTAPIRequest<T> {
             body: IRESTAPIRequestBody<T>;
@@ -725,7 +725,7 @@ declare namespace sn {
             getHeader(header: string): string;
             getSupportedResponseContentTypes(): Array<string>;
         }
-        
+
         //https://docs.servicenow.com/bundle/geneva-servicenow-platform/page/app-store/dev_portal/API_reference/ScriptableServiceRequestBody/concept/c_ScriptableServiceRequestBody.html
         export interface IRESTAPIRequestBody<T> {
             data: T;
@@ -734,7 +734,7 @@ declare namespace sn {
             hasNext(): boolean;
             nextEntry(): any;
         }
-        
+
         //https://docs.servicenow.com/bundle/geneva-servicenow-platform/page/app-store/dev_portal/API_reference/ScriptableServiceResponseBuilder/concept/c_ScriptableServiceResponseBuilder.html
         export interface IRESTAPIResponse {
             getStreamWriter(): IRESTAPIResponseStream;
@@ -746,11 +746,11 @@ declare namespace sn {
             setContentType(contentType: string): void;
             setError(error: any): void;
         }
-        
+
         //https://docs.servicenow.com/bundle/geneva-servicenow-platform/page/app-store/dev_portal/API_reference/ScriptableServiceResponseStreamWriter/concept/c_ScriptableServiceRespStreamWriter.html
         export interface IRESTAPIResponseStream {
-            writeStream(stream: Object);
-            writeString(data: string);
+            writeStream(stream: Object): void;
+            writeString(data: string): void;
         }
     }
 }

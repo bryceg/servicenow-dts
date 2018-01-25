@@ -183,7 +183,7 @@ declare namespace sn {
             setSubject(subject: string): void;
             setFrom(address: string): void;
             setReplyTo(address: string): void;
-            addAddress(type: string, address: string, displayName: string);
+            addAddress(type: string, address: string, displayName: string): void;
             setBody(bodyText: string): void;
         }
 
@@ -394,7 +394,7 @@ declare namespace sn {
             addErrorMessage(message: string): void;
             addInfoMessage(message: string): void;
             base64Decode(source: string): string;
-            base64Encode(source: string): string;            
+            base64Encode(source: string): string;
             beginningOfLastMonth(): string;
             beginningOfLastWeek(): string;
             beginningOfNextWeek(): string;
@@ -453,7 +453,7 @@ declare namespace sn {
             monthsAgo(num: number): string;
             monthsAgoEnd(num: number): string;
             monthsAgoStart(num: number): string;
-            nil(object: any): boolean;            
+            nil(object: any): boolean;
             quartersAgoEnd(num: number): string;
             quartersAgoStart(num: number): string;
             setRedirect(uri: string): void;
@@ -555,17 +555,17 @@ declare namespace sn {
         export interface IGSLog {
             new (traceProperty: string, caller: string): IGSLog;
             initialize(traceProperty: string, caller: string): void;
-            logDebug(msg: string);
-            logInfo(msg: string);
-            logNotice(msg: string);
-            logWarning(msg: string);
-            logErr(msg: string);
-            logCrit(msg: string);
-            logAlert(msg: string);
-            logEmerg(msg: string);
-            log(level: string, msg: string);
-            setLevel(level: string);
-            getLevel(level: string);
+            logDebug(msg: string): void;
+            logInfo(msg: string): void;
+            logNotice(msg: string): void;
+            logWarning(msg: string): void;
+            logErr(msg: string): void;
+            logCrit(msg: string): void;
+            logAlert(msg: string): void;
+            logEmerg(msg: string): void;
+            log(level: string, msg: string): void;
+            setLevel(level: string): void;
+            getLevel(level: string): string;
             debugOn(): boolean;
         }
 
@@ -728,7 +728,7 @@ declare namespace sn {
             getNodeName(): string;
             hasAttribute(name: string): boolean;
             getAttribute(attribute: string): string;
-            getChildNodeIterator(): IXMLNodeIterator;            
+            getChildNodeIterator(): IXMLNodeIterator;
             getTextContent(): string;
             toString(): string;
         }
@@ -738,7 +738,7 @@ declare namespace sn {
             hasNext(): Boolean;
             next(): IXMLNode;
         }
-                
+
         //https://docs.servicenow.com/bundle/geneva-servicenow-platform/page/app-store/dev_portal/API_reference/ScriptableServiceRequest/concept/c_ScriptableServiceRequest.html
         export interface IRESTAPIRequest<T> {
             body: IRESTAPIRequestBody<T>;
@@ -774,8 +774,8 @@ declare namespace sn {
 
         //https://docs.servicenow.com/bundle/geneva-servicenow-platform/page/app-store/dev_portal/API_reference/ScriptableServiceResponseStreamWriter/concept/c_ScriptableServiceRespStreamWriter.html
         export interface IRESTAPIResponseStream {
-            writeStream(stream: Object);
-            writeString(data: string);
+            writeStream(stream: Object): void;
+            writeString(data: string): void;
         }
 
         export interface IWorkflow {
@@ -790,7 +790,7 @@ declare namespace sn {
             scratchpad(): Object;
             setResult(result: string): void;
             setVariable(name: string, value: Object): void;
-            warn(message: string, args: Object): string;            
+            warn(message: string, args: Object): string;
         }
 
         export interface ICMDBGroupAPI {
