@@ -759,7 +759,7 @@ declare namespace sn {
         export interface IRESTAPIRequest<T> {
             body: IRESTAPIRequestBody<T>;
             pathParams: { [paramName: string]: string };
-            queryParams: { [paramName: string]: Array<string> };
+            queryParams: { [paramName: string]: string|number|boolean };
             queryString: string;
             uri: string;
             url: string;
