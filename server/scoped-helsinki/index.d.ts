@@ -716,11 +716,12 @@ declare namespace sn {
         //https://docs.servicenow.com/bundle/geneva-servicenow-platform/page/app-store/dev_portal/API_reference/ScriptableServiceRequest/concept/c_ScriptableServiceRequest.html
         export interface IRESTAPIRequest<T> {
             body: IRESTAPIRequestBody<T>;
-            pathParams: any;
-            queryParams: any;
+            pathParams: { [paramName: string]: string };
+            queryParams: { [paramName: string]: Array<string> };
+            queryString: string;
             uri: string;
             url: string;
-            headers: any;
+            headers: { [paramName: string]: string };
             getHeader(header: string): string;
             getSupportedResponseContentTypes(): Array<string>;
         }
