@@ -25,7 +25,7 @@ declare var global: sn.Server.IGlobalScope;
 declare var sn_ws: sn.Server.ISN_WS;
 declare var Class: sn.Server.IClass;
 declare var RP: sn.Server.IRP;
-declare var workflow: sn.Server.IWorkflow;
+declare var workflow: sn.Server.IScopedWorkflow;
 declare var sn_cmdbgroup: sn.Server.ISN_cmdbgroup;
 
 declare namespace sn {
@@ -290,6 +290,7 @@ declare namespace sn {
             isValidField(columnName: string): boolean;
             isValidRecord(): boolean;
             next(): boolean;
+            operation(): IGlideRecordOperation;
             orderBy(name: string): void;
             orderByDesc(name: string): void;
             query(): void;
@@ -565,6 +566,31 @@ declare namespace sn {
             GlideStringUtil: sn.Server.IGlideStringUtil;
             JSUtil: sn.Server.IJSUtil;
             XMLUtilJS: sn.Server.IXMLUtilJS;
+            Workflow: sn.Server.IGlobalWorkflow;
+        }
+
+        export interface IGlobalWorkflow {
+            new(): IGlobalWorkflow;
+            broadcastEvent(contextId: string, eventName: string): void;
+            cancel(record: IGlideServerRecord): void;
+            cancelContext(context: IGlideServerRecord): void;
+            deleteWorkflow(current: IGlideServerRecord): void;
+            fireEvent(eventRecord: IGlideServerRecord, eventName: string): void;
+            fireEventById(eventRecordId: string, eventName: string): void;
+            getContexts(record: IGlideServerRecord): IGlideServerRecord;
+            getEstimatedDeliveryTime(workflowId: string): string;
+            getEstimatedDeliveryTimeFromWFVersion(wfVersion: IGlideServerRecord): string;
+            getReturnValue(workflowID: string, amount: number, result: boolean): any|null;
+            getRunningFlows(record: IGlideServerRecord): IGlideServerRecord;
+            getVersion(workflowId: string): void;
+            getVersionFromName(workflowName: string): void;
+            getWorkflowFromName(workflowName: string): void;
+            hasWorkflow(record: IGlideServerRecord): boolean;
+            restartWorkflow(record: IGlideServerRecord, maintainStateFlag: boolean): void;
+            runFlows(record: IGlideServerRecord, operation: IGlideRecordOperation): void;
+            startFlow(workflowId: string, current: IGlideServerRecord|null, operation: IGlideRecordOperation, vars?: object) : string;
+            startFlowFromContextInsert(context: IGlideServerRecord, operation: IGlideRecordOperation): void;
+            startFlowRetroactive(workflowID: string, retroactiveMSecs: number, current: IGlideServerRecord, operation: IGlideRecordOperation, vars?: object, withSchedule?: any): IGlideServerRecord;
         }
 
         // http://wiki.servicenow.com/index.php?title=GSLog
@@ -795,7 +821,7 @@ declare namespace sn {
             writeString(data: string): void;
         }
 
-        export interface IWorkflow {
+        export interface IScopedWorkflow {
             debug(message: string, args: Object): string;
             error(message: string, args: Object): string;
             getVariable<T>(name: string): T;
@@ -825,5 +851,7 @@ declare namespace sn {
             getSecureRandomLong(): number;
             getSecureRandomString(length: number): string;
         }
+
+        export type IGlideRecordOperation = "insert"|"update"|"delete";
     }
 }
